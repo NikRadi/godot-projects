@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://wd40pts1sqfv"]
+
+[ext_resource type="Script" uid="uid://v0qy3xgphttg" path="res://src/world.gd" id="1_36ipd"]
+[ext_resource type="PackedScene" uid="uid://bhrn2hot8ulic" path="res://src/player.tscn" id="1_tp5op"]
+[ext_resource type="PackedScene" uid="uid://bu8fdgupg62cr" path="res://src/ball.tscn" id="2_xlegt"]
+[ext_resource type="PackedScene" uid="uid://c00l57lcrs05e" path="res://src/hud.tscn" id="4_t101k"]
+[ext_resource type="AudioStream" uid="uid://dd6wpxoasdwmt" path="res://sound/brick_hit.wav" id="5_36ipd"]
+[ext_resource type="AudioStream" uid="uid://fhf0mtb6j6cd" path="res://sound/paddle_hit.wav" id="6_usxdn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qwtu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t101k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36ipd"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_36ipd")
+
+[node name="Player" parent="." instance=ExtResource("1_tp5op")]
+position = Vector2(400, 550)
+
+[node name="Ball" parent="." instance=ExtResource("2_xlegt")]
+position = Vector2(400, 500)
+
+[node name="HUD" parent="." instance=ExtResource("4_t101k")]
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="Left Wall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-10, 300)
+scale = Vector2(1, 30)
+shape = SubResource("RectangleShape2D_0qwtu")
+
+[node name="Right Wall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(810, 300)
+scale = Vector2(1, 30)
+shape = SubResource("RectangleShape2D_0qwtu")
+
+[node name="Upper Wall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(400, -9)
+scale = Vector2(40, 1)
+shape = SubResource("RectangleShape2D_t101k")
+
+[node name="GameOverArea" type="Area2D" parent="."]
+position = Vector2(400, 610)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea"]
+scale = Vector2(40, 1)
+shape = SubResource("RectangleShape2D_36ipd")
+
+[node name="BrickHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_36ipd")
+volume_db = -7.137
+
+[node name="PaddleHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_usxdn")
+volume_db = -7.137
+
+[connection signal="hit_brick" from="Ball" to="." method="_on_ball_hit_brick"]
+[connection signal="body_entered" from="GameOverArea" to="." method="_on_game_over_area_body_entered"]

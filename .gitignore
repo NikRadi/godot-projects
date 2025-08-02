@@ -1,3 +1,6 @@
 # Godot stuff
 *.tmp
 .godot/
+
+# Save files from games
+*.data
