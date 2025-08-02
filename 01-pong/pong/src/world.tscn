@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=3 uid="uid://40cdl6epuplk"]
+
+[ext_resource type="Script" uid="uid://cf43aasxccbvj" path="res://src/world.gd" id="1_jvefd"]
+[ext_resource type="PackedScene" uid="uid://b3cinud8q1cpo" path="res://src/ai.tscn" id="1_t101k"]
+[ext_resource type="PackedScene" uid="uid://cmebtclg6pyr7" path="res://src/player.tscn" id="1_tp5op"]
+[ext_resource type="PackedScene" uid="uid://dwy8em3u6n1wy" path="res://src/ball.tscn" id="2_xlegt"]
+[ext_resource type="PackedScene" uid="uid://b7jtsuct1qhiy" path="res://src/wall.tscn" id="3_0qwtu"]
+[ext_resource type="AudioStream" uid="uid://2hsroi0kt57b" path="res://sound/hit_wall.wav" id="5_36ipd"]
+[ext_resource type="AudioStream" uid="uid://dq2jen2mf73cp" path="res://sound/hit_paddle.wav" id="5_usxdn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvefd"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_jvefd")
+
+[node name="AI" parent="." instance=ExtResource("1_t101k")]
+position = Vector2(670, 240)
+
+[node name="AIGoal" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AIGoal"]
+position = Vector2(730, 240)
+scale = Vector2(1, 24)
+shape = SubResource("RectangleShape2D_jvefd")
+
+[node name="Player" parent="." instance=ExtResource("1_tp5op")]
+position = Vector2(50, 240)
+
+[node name="PlayerGoal" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGoal"]
+position = Vector2(-10, 240)
+scale = Vector2(1, 24)
+shape = SubResource("RectangleShape2D_jvefd")
+
+[node name="Ball" parent="." instance=ExtResource("2_xlegt")]
+position = Vector2(360, 240)
+
+[node name="Wall (upper)" parent="." instance=ExtResource("3_0qwtu")]
+position = Vector2(360, -10)
+scale = Vector2(36, 1)
+
+[node name="Wall (lower)" parent="." instance=ExtResource("3_0qwtu")]
+position = Vector2(360, 490)
+scale = Vector2(36, 1)
+
+[node name="HitPaddleSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_usxdn")
+
+[node name="HitWallSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_36ipd")
+
+[node name="Score" type="CanvasLayer" parent="."]
+
+[node name="AIScore" type="Label" parent="Score"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 59.0
+offset_top = 36.0
+offset_right = 99.0
+offset_bottom = 81.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerScore" type="Label" parent="Score"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 36.0
+offset_right = -60.0
+offset_bottom = 81.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="AIGoal" to="." method="_on_ai_goal_area_entered"]
+[connection signal="area_entered" from="PlayerGoal" to="." method="_on_player_goal_area_entered"]

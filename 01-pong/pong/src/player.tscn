@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmebtclg6pyr7"]
+
+[ext_resource type="Script" uid="uid://dwvuwav0x18jo" path="res://src/player.gd" id="1_5b12s"]
+[ext_resource type="Texture2D" uid="uid://cp0gvw4xcirgi" path="res://art/paddle.png" id="2_gmfve"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmfve"]
+size = Vector2(8, 32)
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_5b12s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gmfve")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gmfve")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3cinud8q1cpo"]
+
+[ext_resource type="Script" uid="uid://d2wigtjd126wt" path="res://src/ai.gd" id="1_svccv"]
+[ext_resource type="Texture2D" uid="uid://cp0gvw4xcirgi" path="res://art/paddle.png" id="2_8nmwm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qyj0y"]
+size = Vector2(8, 32)
+
+[node name="AI" type="Area2D"]
+script = ExtResource("1_svccv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8nmwm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qyj0y")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
