@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvk5wa34f6ws3"]
+
+[ext_resource type="Script" uid="uid://c1yy0oxvu64tl" path="res://src/invader.gd" id="1_cdh88"]
+[ext_resource type="Texture2D" uid="uid://dcqjwab63kdjq" path="res://art/invader_crab.png" id="2_jjqd5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66p4y"]
+atlas = ExtResource("2_jjqd5")
+region = Rect2(0, 0, 11, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uji37"]
+atlas = ExtResource("2_jjqd5")
+region = Rect2(12, 0, 11, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cs7wy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66p4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uji37")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdh88"]
+size = Vector2(12, 8)
+
+[node name="CrabInvader" type="CharacterBody2D"]
+script = ExtResource("1_cdh88")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cs7wy")
+autoplay = "default"
+frame_progress = 0.0515966
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cdh88")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+lifetime_randomness = 0.5
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 15.0
+angular_velocity_max = 20.0
+scale_amount_min = 0.5
+scale_amount_max = 1.5

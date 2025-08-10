@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfxs1xawcr8s2"]
+
+[ext_resource type="PackedScene" uid="uid://bp6ka0m4hm3vv" path="res://src/player_ship.tscn" id="1_tp5op"]
+[ext_resource type="Script" uid="uid://c7c3eptia7j10" path="res://src/invader_manager.gd" id="2_xlegt"]
+[ext_resource type="Script" uid="uid://cpa2ufflgputh" path="res://src/hud.gd" id="3_0qwtu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlegt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tp5op"]
+
+[node name="World" type="Node2D"]
+
+[node name="BulletWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletWall"]
+position = Vector2(600, -10)
+scale = Vector2(60, 1)
+shape = SubResource("RectangleShape2D_xlegt")
+
+[node name="InvaderManager" type="Node2D" parent="."]
+script = ExtResource("2_xlegt")
+
+[node name="InvaderWalls" type="Area2D" parent="."]
+
+[node name="LeftWall" type="CollisionShape2D" parent="InvaderWalls"]
+position = Vector2(-11, 300)
+scale = Vector2(1, 30)
+shape = SubResource("RectangleShape2D_tp5op")
+
+[node name="RightWall" type="CollisionShape2D" parent="InvaderWalls"]
+position = Vector2(1210, 300)
+scale = Vector2(1, 30)
+shape = SubResource("RectangleShape2D_tp5op")
+
+[node name="PlayerShip" parent="." instance=ExtResource("1_tp5op")]
+position = Vector2(600, 650)
+scale = Vector2(5, 5)
+collision_layer = 2
+
+[node name="PlayerWalls" type="StaticBody2D" parent="."]
+
+[node name="LeftWall" type="CollisionShape2D" parent="PlayerWalls"]
+position = Vector2(-10, 670)
+scale = Vector2(1, 5)
+shape = SubResource("RectangleShape2D_tp5op")
+
+[node name="RightWall" type="CollisionShape2D" parent="PlayerWalls"]
+position = Vector2(1210, 670)
+scale = Vector2(1, 5)
+shape = SubResource("RectangleShape2D_tp5op")
+
+[node name="HUD" type="Node" parent="."]
+script = ExtResource("3_0qwtu")
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 80.0
+offset_bottom = 33.0
+theme_override_font_sizes/font_size = 24
+text = "Score: 99"
+
+[connection signal="body_entered" from="InvaderWalls" to="InvaderManager" method="_on_invader_walls_body_entered"]
