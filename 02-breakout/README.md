@@ -9,4 +9,3 @@ Sound effects made using: https://sfxr.me/
 
 ## Screenshots
 ![Screenshot](screenshots/breakout.PNG)
-
