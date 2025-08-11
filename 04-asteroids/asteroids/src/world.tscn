@@ -1,0 +1,211 @@
+[gd_scene load_steps=6 format=3 uid="uid://clncw7fy713h8"]
+
+[ext_resource type="Script" uid="uid://blhsgkmmling3" path="res://src/world.gd" id="1_36ipd"]
+[ext_resource type="PackedScene" uid="uid://rx7itqe3ey6v" path="res://src/player_ship.tscn" id="1_tp5op"]
+[ext_resource type="Texture2D" uid="uid://6wxm8r6vlb6h" path="res://art/background.png" id="1_xlegt"]
+[ext_resource type="Script" uid="uid://035kfwbfivvg" path="res://src/asteroid_manager.gd" id="2_0qwtu"]
+[ext_resource type="Script" uid="uid://blqa4dfn4wau1" path="res://src/hud_manager.gd" id="4_t101k"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_36ipd")
+
+[node name="AsteroidManager" type="Node2D" parent="."]
+script = ExtResource("2_0qwtu")
+
+[node name="Background" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(64, 128)
+texture = ExtResource("1_xlegt")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(192, 128)
+texture = ExtResource("1_xlegt")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(64, 384)
+texture = ExtResource("1_xlegt")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(192, 384)
+texture = ExtResource("1_xlegt")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(128, 576)
+rotation = 1.5708
+texture = ExtResource("1_xlegt")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D6" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(320, 128)
+texture = ExtResource("1_xlegt")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D7" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(448, 128)
+texture = ExtResource("1_xlegt")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D8" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(320, 384)
+texture = ExtResource("1_xlegt")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D9" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(448, 384)
+texture = ExtResource("1_xlegt")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D10" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(384, 576)
+rotation = 1.5708
+texture = ExtResource("1_xlegt")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D11" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(576, 128)
+texture = ExtResource("1_xlegt")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D12" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(704, 128)
+texture = ExtResource("1_xlegt")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D13" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(576, 384)
+texture = ExtResource("1_xlegt")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D14" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(704, 384)
+texture = ExtResource("1_xlegt")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D15" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(640, 576)
+rotation = 1.5708
+texture = ExtResource("1_xlegt")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D16" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(832, 128)
+texture = ExtResource("1_xlegt")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D17" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(960, 128)
+texture = ExtResource("1_xlegt")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D18" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(832, 384)
+texture = ExtResource("1_xlegt")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D19" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(960, 384)
+texture = ExtResource("1_xlegt")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="Sprite2D20" type="Sprite2D" parent="Background"]
+z_index = -10
+texture_filter = 1
+position = Vector2(896, 576)
+rotation = 1.5708
+texture = ExtResource("1_xlegt")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 256)
+
+[node name="PlayerShip" parent="." instance=ExtResource("1_tp5op")]
+z_index = 10
+position = Vector2(635, 419)
+scale = Vector2(4, 4)
+
+[node name="HUDManager" type="Node" parent="."]
+script = ExtResource("4_t101k")
+
+[node name="ScoreLabel" type="Label" parent="HUDManager"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 115.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 24
+text = "Score: 99"
+
+[node name="TimeLabel" type="Label" parent="HUDManager"]
+offset_left = 10.0
+offset_top = 45.0
+offset_right = 119.0
+offset_bottom = 79.0
+theme_override_font_sizes/font_size = 24
+text = "Time: 99s"

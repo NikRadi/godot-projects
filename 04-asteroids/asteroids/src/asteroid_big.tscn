@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://m88hddhv4r8f"]
+
+[ext_resource type="Script" uid="uid://nan77rhq5crq" path="res://src/asteroid.gd" id="1_ws0v6"]
+[ext_resource type="Texture2D" uid="uid://dwulkerhfr03r" path="res://art/miscellaneous.png" id="2_dp8pt"]
+[ext_resource type="PackedScene" uid="uid://jvwi4q7okgmb" path="res://src/explosion_animation.tscn" id="3_dp8pt"]
+[ext_resource type="AudioStream" uid="uid://bm42pt3qssrn5" path="res://sound/explosion.wav" id="4_6tv35"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ys2r7"]
+size = Vector2(13, 14)
+
+[node name="BigAsteroid" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_ws0v6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_dp8pt")
+region_enabled = true
+region_rect = Rect2(17, 17, 13, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ys2r7")
+
+[node name="ExplosionAnimation" parent="." instance=ExtResource("3_dp8pt")]
+visible = false
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6tv35")
+volume_db = -25.0
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

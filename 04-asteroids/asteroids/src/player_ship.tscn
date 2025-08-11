@@ -1,0 +1,100 @@
+[gd_scene load_steps=11 format=3 uid="uid://rx7itqe3ey6v"]
+
+[ext_resource type="Script" uid="uid://dd7tyuuouj0ua" path="res://src/player_ship.gd" id="1_3is60"]
+[ext_resource type="Texture2D" uid="uid://cyk73ygvxsu66" path="res://art/ships.png" id="2_88vm5"]
+[ext_resource type="Texture2D" uid="uid://dwulkerhfr03r" path="res://art/miscellaneous.png" id="3_4uspt"]
+[ext_resource type="AudioStream" uid="uid://21w4036yuibv" path="res://sound/shoot.wav" id="4_ypl1r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88vm5"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypl1r"]
+atlas = ExtResource("3_4uspt")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6euv6"]
+atlas = ExtResource("3_4uspt")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1r1q"]
+atlas = ExtResource("3_4uspt")
+region = Rect2(56, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f23qh"]
+atlas = ExtResource("3_4uspt")
+region = Rect2(64, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o1udl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypl1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6euv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1r1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f23qh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[node name="PlayerShip" type="CharacterBody2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_3is60")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_88vm5")
+
+[node name="PrimaryGun" type="Marker2D" parent="."]
+position = Vector2(0, -8.2)
+
+[node name="LeftThrusterAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(-5, 12)
+sprite_frames = SubResource("SpriteFrames_o1udl")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+
+[node name="RightThrusterAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(4, 12)
+sprite_frames = SubResource("SpriteFrames_o1udl")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+
+[node name="ShipSprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_88vm5")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(32, 64, 16, 16)
+
+[node name="StrongShieldSprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2.074)
+texture = ExtResource("3_4uspt")
+region_enabled = true
+region_rect = Rect2(88, 32, 16, 16)
+
+[node name="WeakShieldSprite2D" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+scale = Vector2(2, 2.074)
+texture = ExtResource("3_4uspt")
+region_enabled = true
+region_rect = Rect2(73, 33, 14, 14)
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ypl1r")
+volume_db = -25.0
